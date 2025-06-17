@@ -3,72 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paw @ Me</title>
+    <title>Paw @ Me Clicker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="gameContainer">
-        <!-- Logo Section -->
-        <div id="logoSection">
-            <img id="logo" src="images/logo.png" alt="Paw @ Me" class="logo">
+        <!-- Header -->
+        <div id="header">
+            <div id="logo">
+                <h1>Paw @ Me Clicker</h1>
+            </div>
+            <div id="stats">
+                <div id="bapCounter">Pay Baps: <span id="bapCount">0</span></div>
+                <div id="bapsPerSecond">BPS: <span id="bpsCount">0</span></div>
+            </div>
         </div>
 
-        <!-- Game Status -->
-        <div id="gameStatus">
-            <div id="timeLeft">Time Left: 2:00</div>
-            <div id="roomCode">Room: <span id="roomId">----</span></div>
+        <!-- Character Selection -->
+        <div id="characterSelect">
+            <h2>Choose Your Character!</h2>
+            <div id="characterOptions">
+                <div class="character-option" data-character="1">
+                    <img src="images/character1_idle.png" alt="Character 1" class="character-preview">
+                    <p>Character 1</p>
+                </div>
+                <div class="character-option" data-character="2">
+                    <img src="images/character2_idle.png" alt="Character 2" class="character-preview">
+                    <p>Character 2</p>
+                </div>
+            </div>
         </div>
 
         <!-- Main Game Area -->
-        <div id="gameArea">
-            <!-- Player 1 (Left) -->
-            <div class="player-section" id="player1Section">
-                <div class="character-container">
-                    <img id="player1Character" src="images/character1_idle.png" alt="Player 1" class="character">
-                    <img id="player1Explosion" src="images/explosion.png" alt="Explosion" class="explosion hidden">
+        <div id="gameArea" class="hidden">
+            <!-- Clicker Character -->
+            <div id="clickerSection">
+                <div id="characterContainer">
+                    <img id="mainCharacter" src="" alt="Main Character" class="main-character">
+                    <div id="clickEffect" class="click-effect hidden">+1</div>
                 </div>
-                <div class="score">Score: <span id="player1Score">0</span></div>
-                <div class="player-name">Player 1</div>
+                <div id="clickInstructions">Click me for Pay Baps!</div>
             </div>
 
-            <!-- Center Action Area -->
-            <div id="centerArea">
-                <div id="countdownDisplay" class="countdown hidden">3</div>
-                <div id="actionPrompt" class="action-prompt hidden">PRESS SPACE!</div>
-                <div id="connectionStatus">Connecting...</div>
-            </div>
+            <!-- Shop -->
+            <div id="shopSection">
+                <h2>Upgrade Shop</h2>
+                <div id="shopItems">
+                    <!-- Basic Upgrades -->
+                    <div class="shop-category">
+                        <h3>Basic Upgrades</h3>
+                        <div class="shop-item" data-item="autoClicker">
+                            <div class="item-info">
+                                <h4>Auto Paw</h4>
+                                <p>Automatically clicks for you</p>
+                                <span class="item-stats">+1 BPS</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 15</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
 
-            <!-- Player 2 (Right) -->
-            <div class="player-section" id="player2Section">
-                <div class="character-container">
-                    <img id="player2Character" src="images/character2_idle.png" alt="Player 2" class="character">
-                    <img id="player2Explosion" src="images/explosion.png" alt="Explosion" class="explosion hidden">
+                        <div class="shop-item" data-item="clickMultiplier">
+                            <div class="item-info">
+                                <h4>Sharp Claws</h4>
+                                <p>Increases click value</p>
+                                <span class="item-stats">+1 per click</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 100</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
+
+                        <div class="shop-item" data-item="superBap">
+                            <div class="item-info">
+                                <h4>Super Bap Generator</h4>
+                                <p>Chance for 10x baps on click</p>
+                                <span class="item-stats">+5% chance</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 250</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Automation Upgrades -->
+                    <div class="shop-category">
+                        <h3>Automation</h3>
+                        <div class="shop-item" data-item="bapFactory">
+                            <div class="item-info">
+                                <h4>Bap Factory</h4>
+                                <p>Produces baps automatically</p>
+                                <span class="item-stats">+5 BPS</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 500</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
+
+                        <div class="shop-item" data-item="bapMine">
+                            <div class="item-info">
+                                <h4>Underground Bap Mine</h4>
+                                <p>Deep bap extraction</p>
+                                <span class="item-stats">+25 BPS</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 2500</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
+
+                        <div class="shop-item" data-item="bapLab">
+                            <div class="item-info">
+                                <h4>Bap Research Lab</h4>
+                                <p>Scientific bap creation</p>
+                                <span class="item-stats">+100 BPS</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 10000</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
+
+                        <div class="shop-item" data-item="bapPortal">
+                            <div class="item-info">
+                                <h4>Interdimensional Bap Portal</h4>
+                                <p>Harvest baps from other dimensions</p>
+                                <span class="item-stats">+500 BPS</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 50000</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prestige Upgrades -->
+                    <div class="shop-category">
+                        <h3>Prestige</h3>
+                        <div class="shop-item" data-item="goldenPaw">
+                            <div class="item-info">
+                                <h4>Golden Paw</h4>
+                                <p>Multiplies all production by 2x</p>
+                                <span class="item-stats">2x multiplier</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 100000</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
+
+                        <div class="shop-item" data-item="cosmicBap">
+                            <div class="item-info">
+                                <h4>Cosmic Bap Engine</h4>
+                                <p>Harness the power of the universe</p>
+                                <span class="item-stats">+5000 BPS</span>
+                            </div>
+                            <div class="item-purchase">
+                                <span class="item-cost">Cost: 1000000</span>
+                                <span class="item-owned">Owned: 0</span>
+                                <button class="buy-btn">Buy</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="score">Score: <span id="player2Score">0</span></div>
-                <div class="player-name">Player 2</div>
             </div>
         </div>
 
-        <!-- Controls Info -->
-        <div id="controlsInfo">
-            <div class="controls">
-                <span>SPACE: Attack</span>
-                <span>ALT: Dodge</span>
-                <span>SHIFT: Taunt</span>
+        <!-- Achievements -->
+        <div id="achievementsSection">
+            <h3>Achievements</h3>
+            <div id="achievementsList">
+                <div class="achievement locked" data-achievement="firstClick">
+                    <div class="achievement-icon">🐾</div>
+                    <div class="achievement-info">
+                        <h4>First Bap</h4>
+                        <p>Click for the first time</p>
+                    </div>
+                </div>
+                <div class="achievement locked" data-achievement="hundred">
+                    <div class="achievement-icon">💯</div>
+                    <div class="achievement-info">
+                        <h4>Century Club</h4>
+                        <p>Reach 100 baps</p>
+                    </div>
+                </div>
+                <div class="achievement locked" data-achievement="thousand">
+                    <div class="achievement-icon">🏆</div>
+                    <div class="achievement-info">
+                        <h4>Bap Master</h4>
+                        <p>Reach 1,000 baps</p>
+                    </div>
+                </div>
+                <div class="achievement locked" data-achievement="superBapFirst">
+                    <div class="achievement-icon">⭐</div>
+                    <div class="achievement-info">
+                        <h4>Super Lucky</h4>
+                        <p>Get your first Super Bap</p>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <!-- Join/Create Room -->
-        <div id="menuSection">
-            <button id="createRoomBtn" class="game-btn">Create Room</button>
-            <input type="text" id="roomInput" placeholder="Enter Room Code" maxlength="4">
-            <button id="joinRoomBtn" class="game-btn">Join Room</button>
         </div>
     </div>
 
-    <!-- Firebase SDK -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-database.js"></script>
+    <!-- Floating Hearts Container -->
+    <div id="heartsContainer"></div>
+
     <script src="script.js"></script>
 </body>
 </html>
