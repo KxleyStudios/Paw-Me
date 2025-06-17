@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paw @ Me</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <!-- Logo Section -->
+        <div id="logoSection">
+            <img id="logo" src="images/logo.png" alt="Paw @ Me" class="logo">
+        </div>
+
+        <!-- Game Status -->
+        <div id="gameStatus">
+            <div id="timeLeft">Time Left: 2:00</div>
+            <div id="roomCode">Room: <span id="roomId">----</span></div>
+        </div>
+
+        <!-- Main Game Area -->
+        <div id="gameArea">
+            <!-- Player 1 (Left) -->
+            <div class="player-section" id="player1Section">
+                <div class="character-container">
+                    <img id="player1Character" src="images/character1_idle.png" alt="Player 1" class="character">
+                    <img id="player1Explosion" src="images/explosion.png" alt="Explosion" class="explosion hidden">
+                </div>
+                <div class="score">Score: <span id="player1Score">0</span></div>
+                <div class="player-name">Player 1</div>
+            </div>
+
+            <!-- Center Action Area -->
+            <div id="centerArea">
+                <div id="countdownDisplay" class="countdown hidden">3</div>
+                <div id="actionPrompt" class="action-prompt hidden">PRESS SPACE!</div>
+                <div id="connectionStatus">Connecting...</div>
+            </div>
+
+            <!-- Player 2 (Right) -->
+            <div class="player-section" id="player2Section">
+                <div class="character-container">
+                    <img id="player2Character" src="images/character2_idle.png" alt="Player 2" class="character">
+                    <img id="player2Explosion" src="images/explosion.png" alt="Explosion" class="explosion hidden">
+                </div>
+                <div class="score">Score: <span id="player2Score">0</span></div>
+                <div class="player-name">Player 2</div>
+            </div>
+        </div>
+
+        <!-- Controls Info -->
+        <div id="controlsInfo">
+            <div class="controls">
+                <span>SPACE: Attack</span>
+                <span>ALT: Dodge</span>
+                <span>SHIFT: Taunt</span>
+            </div>
+        </div>
+
+        <!-- Join/Create Room -->
+        <div id="menuSection">
+            <button id="createRoomBtn" class="game-btn">Create Room</button>
+            <input type="text" id="roomInput" placeholder="Enter Room Code" maxlength="4">
+            <button id="joinRoomBtn" class="game-btn">Join Room</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/9.22.0/firebase-database.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
